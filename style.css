@@ -1,0 +1,560 @@
+/* =========================================================
+   東馬護理指導系統 - 無障礙與通用設計樣式 (style.css)
+   ========================================================= */
+
+:root {
+  /* 色彩無障礙：避開紅綠對比，採用高對比深藍、琥珀黃與磚紅 */
+  --primary-color: #0b5394;
+  --primary-hover: #073763;
+  --primary-light: #e9f1f7;
+  --text-main: #111827;
+  --text-sub: #374151;
+  --bg-page: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #94a3b8;
+  
+  --alert-border: #b91c1c;
+  --alert-bg: #fff1f2;
+  --alert-text: #881337;
+  
+  --audio-btn-bg: #f59e0b;
+  --audio-btn-hover: #d97706;
+
+  /* 模式 1：一般字體 */
+  --font-base: 18px;
+  --font-h1: 28px;
+  --font-h2: 22px;
+  --font-tag: 16px;
+  --btn-font: 18px;
+}
+
+/* 模式 2：舒適大字 */
+body.font-large {
+  --font-base: 24px;
+  --font-h1: 36px;
+  --font-h2: 28px;
+  --font-tag: 19px;
+  --btn-font: 22px;
+}
+
+/* 模式 3：長輩特大字 */
+body.font-xlarge {
+  --font-base: 30px;
+  --font-h1: 44px;
+  --font-h2: 34px;
+  --font-tag: 24px;
+  --btn-font: 26px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-size: var(--font-base);
+  line-height: 1.8;
+  word-wrap: break-word;
+}
+
+/* 頂部固定列 */
+.header-bar {
+  background-color: var(--card-bg);
+  border-bottom: 4px solid var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+}
+
+.logo-area h1 {
+  font-size: var(--font-h1);
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+/* 三段字體切換控制項 */
+.font-controller {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 0.35rem 0.5rem;
+  border-radius: 40px;
+  border: 2px solid var(--border-color);
+  gap: 0.35rem;
+}
+
+.font-controller span {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0.5rem;
+  color: var(--text-sub);
+}
+
+.size-btn {
+  background: #ffffff;
+  border: 2px solid transparent;
+  color: var(--text-main);
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-btn.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+/* 搜尋與類別區域 */
+.nav-section {
+  max-width: 1100px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 3px solid var(--border-color);
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.search-box:focus-within {
+  border-color: var(--primary-color);
+}
+
+.search-box i {
+  font-size: 2rem;
+  color: var(--text-sub);
+  margin-right: 0.75rem;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* 分類標籤滑動條 */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tab-btn {
+  background: #ffffff;
+  border: 3px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.6rem 1.3rem;
+  border-radius: 40px;
+  font-size: var(--btn-font);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.tab-btn.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* 搜尋統計與查無結果提示 */
+.search-summary {
+  font-size: var(--font-tag);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.no-result {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 2px dashed var(--border-color);
+  color: var(--text-sub);
+}
+
+.no-result i {
+  font-size: 3.5rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+/* 主內容清單 */
+.main-content {
+  max-width: 1100px;
+  margin: 1.5rem auto 4rem;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+/* 卡片主體 */
+.guide-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  border: 3px solid var(--border-color);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card-title-bar {
+  background-color: var(--primary-light);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #cbd5e1;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.card-title-bar h2 {
+  font-size: var(--font-h2);
+  color: var(--primary-hover);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.title-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tag-label {
+  background: #ffffff;
+  color: var(--primary-color);
+  font-size: var(--font-tag);
+  font-weight: 800;
+  padding: 0.35rem 0.9rem;
+  border-radius: 30px;
+  border: 2px solid var(--primary-color);
+}
+
+.speech-btn {
+  background-color: var(--audio-btn-bg);
+  color: #ffffff;
+  border: 2px solid #b45309;
+  border-radius: 30px;
+  padding: 0.45rem 1rem;
+  font-size: var(--font-tag);
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+}
+
+.speech-btn:hover {
+  background-color: var(--audio-btn-hover);
+}
+
+.speech-btn.playing {
+  background-color: #ef4444;
+  border-color: #991b1b;
+}
+
+.card-inner {
+  padding: 1.75rem 2rem;
+}
+
+/* 條列次分類連結網格（點選直接開啟對應專科 Google Drive） */
+.sublink-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.85rem;
+  margin: 1.25rem 0;
+}
+
+.sublink-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border: 2px solid #cbd5e1;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: var(--btn-font);
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.sublink-item:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.sublink-item i {
+  color: var(--primary-color);
+  font-size: 1.3em;
+}
+
+/* 圖片預留區域 */
+.image-box {
+  width: 100%;
+  min-height: 220px;
+  background-color: #f8fafc;
+  border: 3px dashed #94a3b8;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding: 1.25rem;
+}
+
+.image-box img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  display: none;
+}
+
+.image-box i {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.image-box span {
+  font-size: var(--font-base);
+  font-weight: 800;
+}
+
+.guide-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.guide-list li {
+  position: relative;
+  padding-left: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.guide-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: 900;
+  font-size: 1.3em;
+}
+
+.guide-list strong {
+  color: #000000;
+  font-weight: 800;
+}
+
+.warning-box {
+  background-color: var(--alert-bg);
+  border-left: 8px solid var(--alert-border);
+  border-top: 1px solid #fecdd3;
+  border-right: 1px solid #fecdd3;
+  border-bottom: 1px solid #fecdd3;
+  padding: 1.25rem 1.75rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  color: var(--alert-text);
+}
+
+.warning-box h4 {
+  font-size: calc(var(--font-base) * 1.05);
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 操作連結按鈕 */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  border-top: 3px solid #e2e8f0;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 14px;
+  font-size: var(--btn-font);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 60px;
+}
+
+.link-btn.btn-cloud {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: 3px solid var(--primary-color);
+}
+
+.link-btn.btn-cloud:hover {
+  background-color: var(--primary-hover);
+}
+
+/* 頁尾 */
+footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: #ffffff;
+  border-top: 3px solid var(--border-color);
+  color: var(--text-sub);
+  font-size: var(--font-base);
+}
+
+.footer-hotline {
+  margin-top: 0.75rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  font-size: calc(var(--font-base) * 1.15);
+}
+
+/* 手機版排版優化 (寬度 768px 以下) */
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .logo-area {
+    justify-content: center;
+  }
+
+  .font-controller {
+    justify-content: center;
+  }
+
+  .nav-section {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+
+  .search-box {
+    padding: 0.65rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.5rem;
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 0.55rem 1.1rem;
+  }
+
+  .main-content {
+    padding: 0 1rem;
+    margin-top: 1rem;
+    gap: 1.5rem;
+  }
+
+  .card-title-bar {
+    padding: 1rem 1.25rem;
+  }
+
+  .title-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+  }
+
+  .speech-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+  }
+
+  .card-inner {
+    padding: 1.25rem 1rem;
+  }
+
+  .sublink-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .link-btn {
+    width: 100%;
+  }
+}
