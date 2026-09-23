@@ -24,7 +24,7 @@
   <header class="header-bar">
     <div class="header-container">
       <div class="logo-area">
-        <i class="ph-bold ph-heart-straight logo-icon" aria-hidden="true"></i>
+        <img src="maxie.webp" alt="台東馬偕紀念醫院" style="height: 45px; width: auto; object-fit: contain; margin-right: 8px;">
         <h1>台東馬偕醫院護理指導</h1>
       </div>
 
@@ -48,7 +48,8 @@
     <div class="category-tabs" id="categoryTabContainer" role="tablist" aria-label="衛教分類">
       <button class="tab-btn" data-category="all" role="tab" aria-selected="true" aria-controls="cardContainer">全部指引</button>
       <button class="tab-btn" data-category="med" role="tab" aria-selected="false" aria-controls="cardContainer">內科病房</button>
-      <button class="tab-btn" data-category="surg" role="tab" aria-selected="false" aria-controls="cardContainer">外科手術</button>
+      <button class="tab-btn" data-category="surg" role="tab" aria-selected="false" aria-controls="cardContainer">外科病房</button>
+      <button class="tab-btn" data-category="or" role="tab" aria-selected="false" aria-controls="cardContainer">手術室</button>
       <button class="tab-btn" data-category="mat" role="tab" aria-selected="false" aria-controls="cardContainer">婦產照顧</button>
       <button class="tab-btn" data-category="ped" role="tab" aria-selected="false" aria-controls="cardContainer">小兒兒科</button>
       <button class="tab-btn" data-category="er" role="tab" aria-selected="false" aria-controls="cardContainer">急診照護</button>
@@ -76,7 +77,7 @@
     // ==========================================
     const guideData = [
       {
-        id: "01-med", category: "med", groupTitle: "01 內科護理指導", badge: "內科全科", icon: "ph-stethoscope",
+        id: "01-med", category: "med", groupTitle: "內科護理指導", badge: "內科全科", icon: "ph-stethoscope",
         keywords: ["內科", "肚子", "心臟", "皮膚", "血液", "神經", "胸腔", "氣喘", "腎臟", "腫瘤", "胃鏡", "腸胃", "一般內科", "中風"],
         description: "包含胃腸肝膽、心臟血管、胸腔氣喘、腎臟、神經退化等內科疾病日常照護與檢查須知。",
         mainTips: [
@@ -99,8 +100,8 @@
         ]
       },
       {
-        id: "02-surg", category: "surg", groupTitle: "02 外科護理指導", badge: "手術與傷口", icon: "ph-scissors",
-        keywords: ["外科", "手術", "開刀", "傷口", "骨折", "骨科", "牙科", "耳鼻喉", "泌尿", "神經外科", "胸腔外科", "眼科", "大腸直腸", "痔瘡", "整形外科"],
+        id: "02-surg", category: "surg", groupTitle: "外科護理指導", badge: "病房與傷口", icon: "ph-scissors",
+        keywords: ["外科", "開刀", "傷口", "骨折", "骨科", "牙科", "耳鼻喉", "泌尿", "神經外科", "胸腔外科", "眼科", "大腸直腸", "痔瘡", "整形外科"],
         description: "包含各專科手術前後準備、傷口換藥、引流管照護與術後下床活動原則。",
         mainTips: [
           "手術後下床請採「慢慢來三步驟」：躺著坐起 30 秒、床緣垂腿 30 秒、站穩再走。",
@@ -124,7 +125,7 @@
         ]
       },
       {
-        id: "03-mat", category: "mat", groupTitle: "03 婦產科護理指導", badge: "母嬰照護", icon: "ph-baby-carriage",
+        id: "03-mat", category: "mat", groupTitle: "婦產科護理指導", badge: "母嬰照護", icon: "ph-baby-carriage",
         keywords: ["婦產科", "婦科", "產科", "懷孕", "生產", "坐月子", "母乳", "餵奶", "產後", "剖腹", "自然產", "惡露"],
         description: "提供婦科手術照護、產前待產、自然產與剖腹產後自我照護、哺餵母乳與傷口復原指引。",
         mainTips: [
@@ -140,7 +141,7 @@
         ]
       },
       {
-        id: "04-ped", category: "ped", groupTitle: "04 兒科護理指導", badge: "寶貝健康", icon: "ph-baby",
+        id: "04-ped", category: "ped", groupTitle: "兒科護理指導", badge: "寶貝健康", icon: "ph-baby",
         keywords: ["兒科", "小兒", "小朋友", "發燒", "感冒", "氣喘", "小兒心臟", "小兒腸胃", "腸病毒", "拉肚子", "抽筋", "新生兒", "早產兒"],
         description: "專為家長整理的小兒發燒退燒處理、小兒氣喘、腸胃炎脫水預防及新生兒居家日常照顧。",
         mainTips: [
@@ -161,7 +162,7 @@
         ]
       },
       {
-        id: "05-er", category: "er", groupTitle: "05 急診護理指導", badge: "急症緊急", icon: "ph-first-aid",
+        id: "05-er", category: "er", groupTitle: "急診護理指導", badge: "急症緊急", icon: "ph-first-aid",
         keywords: ["急診", "急救", "外傷", "胸痛", "頭部撞擊", "急診內科", "急診外科", "急診觀察", "大量失血"],
         description: "急診留觀期間注意事項、頭部外傷回家觀察指標及急性創傷處理。",
         mainTips: [
@@ -178,8 +179,8 @@
         ]
       },
       {
-        id: "07-or", category: "surg", groupTitle: "07 手術室護理指導", badge: "手術麻醉", icon: "ph-bandaids",
-        keywords: ["手術室", "開刀房", "麻醉", "全身麻醉", "術前禁食", "疼痛科", "無痛分娩", "術後止痛"],
+        id: "07-or", category: "or", groupTitle: "手術室護理指導", badge: "手術麻醉", icon: "ph-bandaids",
+        keywords: ["手術", "手術室", "開刀房", "麻醉", "全身麻醉", "術前禁食", "疼痛科", "無痛分娩", "術後止痛"],
         description: "手術前麻醉評估、入開刀房流程、術後恢復室甦醒與自控式止痛照護。",
         mainTips: [
           "進入手術室前請取下假牙、眼鏡、手錶飾品、指甲油及隱形眼鏡。",
@@ -200,7 +201,7 @@
         ]
       },
       {
-        id: "09-opd", category: "opd", groupTitle: "09 門診護理指導", badge: "門診追蹤", icon: "ph-door-open",
+        id: "09-opd", category: "opd", groupTitle: "門診護理指導", badge: "門診追蹤", icon: "ph-door-open",
         keywords: ["門診", "看診", "中醫", "門診內科", "門診外科", "皮膚", "眼科點眼藥", "精神科門診", "慢性病連續處方箋"],
         description: "門診各科衛教、慢性病日常追蹤、眼藥水正確點法及中醫用藥須知。",
         mainTips: [
@@ -249,7 +250,6 @@
       }
     ];
 
-    // 防抖函數 (Debounce)
     function debounce(func, wait) {
       let timeout;
       return function(...args) {
@@ -259,18 +259,22 @@
     }
 
     // ==========================================
-    // 語音朗讀合成邏輯 (支援度與中文語音判定)
+    // 語音朗讀合成邏輯 (加入句號與換行時的延遲斷句)
     // ==========================================
     let currentUtterance = null;
     let currentPlayingBtn = null;
     const isSpeechSupported = 'speechSynthesis' in window;
     let preferredVoice = null;
+    
+    // 斷句播放所需變數
+    let sentencesToSpeak = [];
+    let currentSentenceIndex = 0;
+    let pauseTimeout = null;
 
     function initSpeechSynthesis() {
       if (!isSpeechSupported) return;
       const loadVoices = () => {
         const voices = window.speechSynthesis.getVoices();
-        // 優先挑選台灣/繁中語音，否則挑選任何中文語音
         preferredVoice = voices.find(v => v.lang.includes('zh-TW') || v.lang.includes('zh-HK')) 
                       || voices.find(v => v.lang.includes('zh')) 
                       || voices[0];
@@ -281,11 +285,16 @@
       }
     }
 
-    // 修復 Bug 1：強制停止並重置語音 UI
+    // 強制停止朗讀並清除 1.5 秒的暫停計時器
     function stopSpeech() {
       if (isSpeechSupported && window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
       }
+      if (pauseTimeout) {
+        clearTimeout(pauseTimeout);
+        pauseTimeout = null;
+      }
+      
       const speechBtns = document.querySelectorAll('.speech-btn');
       speechBtns.forEach(b => {
         b.setAttribute('aria-pressed', 'false');
@@ -293,6 +302,40 @@
         b.querySelector('i').className = 'ph-bold ph-speaker-high';
       });
       currentPlayingBtn = null;
+    }
+
+    // 播放陣列中的下一個句子
+    function playNextSentence() {
+      if (currentSentenceIndex >= sentencesToSpeak.length) {
+        stopSpeech();
+        return;
+      }
+
+      const text = sentencesToSpeak[currentSentenceIndex];
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      if (preferredVoice) currentUtterance.voice = preferredVoice;
+      currentUtterance.lang = 'zh-TW';
+      currentUtterance.rate = 0.9;
+
+      currentUtterance.onend = () => {
+        currentSentenceIndex++;
+        if (currentSentenceIndex < sentencesToSpeak.length) {
+          // 當這句唸完，延遲 1.5 秒後再開始唸下一句
+          pauseTimeout = setTimeout(() => {
+            playNextSentence();
+          }, 1500); 
+        } else {
+          stopSpeech(); // 陣列全數播放完畢
+        }
+      };
+
+      currentUtterance.onerror = (e) => {
+        if (e.error !== 'canceled') {
+          stopSpeech();
+        }
+      };
+
+      window.speechSynthesis.speak(currentUtterance);
     }
 
     function bindSpeechEvents() {
@@ -303,32 +346,33 @@
       const speechBtns = document.querySelectorAll('.speech-btn');
       speechBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          const card = btn.closest('.guide-card');
-          const title = card.querySelector('h2').innerText;
-          const narrative = card.querySelector('.narrative-content').innerText;
-          const fullText = `${title}。${narrative}`;
-
-          if (window.speechSynthesis.speaking && currentPlayingBtn === btn) {
+          // 若目前按下的就是正在發聲（或正在等待 1.5 秒）的按鈕，則執行停止
+          if (currentPlayingBtn === btn) {
             stopSpeech();
             return;
           }
 
           stopSpeech();
 
-          currentUtterance = new SpeechSynthesisUtterance(fullText);
-          if (preferredVoice) currentUtterance.voice = preferredVoice;
-          currentUtterance.lang = 'zh-TW';
-          currentUtterance.rate = 0.9;
+          const card = btn.closest('.guide-card');
+          const title = card.querySelector('h2').innerText;
+          const narrative = card.querySelector('.narrative-content').innerText;
+          const fullText = `${title}。${narrative}`;
+
+          // 使用正規表達式切分句子 (包含句號、換行符號、問號與驚嘆號)
+          const rawSentences = fullText.split(/[。\n！？]+/);
+          
+          // 過濾掉空白字串，建立最終要發音的句子陣列
+          sentencesToSpeak = rawSentences.map(s => s.trim()).filter(s => s.length > 0);
+          currentSentenceIndex = 0;
 
           btn.setAttribute('aria-pressed', 'true');
           btn.querySelector('span').innerText = '停止朗讀';
           btn.querySelector('i').className = 'ph-bold ph-stop-circle';
           currentPlayingBtn = btn;
 
-          currentUtterance.onend = stopSpeech;
-          currentUtterance.onerror = stopSpeech;
-
-          window.speechSynthesis.speak(currentUtterance);
+          // 啟動分段朗讀
+          playNextSentence();
         });
       });
     }
@@ -336,32 +380,23 @@
     // ==========================================
     // 智慧推播搜尋引擎 (多關鍵字加權與高亮)
     // ==========================================
-    
-    // 工具函數：將字串中的特殊字元跳脫，避免 Regex 錯誤
     function escapeRegExp(string) {
       return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    // 工具函數：關鍵字高亮標記
     function highlightText(text, query) {
       if (!query) return text;
-      // 用空白切分關鍵字，過濾掉空字串
       const terms = query.trim().split(/\s+/).filter(t => t.length > 0);
       if (terms.length === 0) return text;
 
-      // 建立動態正則表達式，忽略大小寫 (gi)
       const safeTerms = terms.map(escapeRegExp).join('|');
       const regex = new RegExp(`(${safeTerms})`, 'gi');
-      
-      // 將配對到的文字包上 <mark> 標籤
       return text.replace(regex, '<mark class="search-highlight">$1</mark>');
     }
 
-    // 1. 支援「空白分詞」的計分演算法
     function calculateCardScore(card, query) {
       if (!query) return 1;
       let score = 0;
-      // 將使用者的輸入用空白切開，支援例如 "開刀 肚子" 的多條件查詢
       const searchTerms = query.toLowerCase().trim().split(/\s+/).filter(t => t.length > 0);
 
       searchTerms.forEach(term => {
@@ -386,10 +421,9 @@
       return score;
     }
 
-    // 2. 渲染卡片 (套用高亮功能)
     function renderCards(cardsToRender) {
       const container = document.getElementById('cardContainer');
-      const query = document.getElementById('searchInput').value; // 取得當下搜尋字串用於高亮
+      const query = document.getElementById('searchInput').value; 
       
       stopSpeech(); 
       container.innerHTML = '';
@@ -405,7 +439,6 @@
       }
 
       cardsToRender.forEach(card => {
-        // 套用高亮處理
         const highlightedTitle = highlightText(card.groupTitle, query);
         const highlightedDesc = highlightText(card.description, query);
         
@@ -484,13 +517,9 @@
       renderCards(filtered);
     }
 
-    // ==========================================
-    // 初始化事件綁定
-    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       initSpeechSynthesis();
 
-      // localStorage 防呆機制 (因應 WebView 或無痕模式拋錯)
       let savedSize = 'normal';
       try {
         savedSize = localStorage.getItem('tm_font_size') || 'normal';
@@ -515,7 +544,6 @@
         });
       });
 
-      // 分類標籤切換與 aria-selected
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -525,7 +553,6 @@
         });
       });
 
-      // 搜尋綁定 (Debounce)
       const searchInput = document.getElementById('searchInput');
       searchInput.addEventListener('input', debounce(applySearchAndFilter, 150));
 
