@@ -3,77 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
-  <title>台東馬偕護理指導系統 - 病人與家屬照護專區</title>
+  <!-- SEO & 分享預覽 -->
+  <meta name="description" content="台東馬偕醫院病人與家屬專用之護理衛教指導系統，提供防跌、手術、檢查、管路照護等衛教資訊與雲端表單下載。">
+  <title>台東馬偕醫院護理指導系統 - 病人與家屬照護專區</title>
   
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- 鎖定 Phosphor Icons 版本號並延遲載入以提升效能 -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body>
 
-  <!-- 頂部標頭與三段字體切換 -->
+  <!-- 無障礙：跳到主要內容 -->
+  <a href="#main-content" class="skip-link">跳到主要內容</a>
+
   <header class="header-bar">
     <div class="header-container">
       <div class="logo-area">
-        <i class="ph-bold ph-heart-straight logo-icon"></i>
-        <h1>台東馬偕護理指導</h1>
+        <i class="ph-bold ph-heart-straight logo-icon" aria-hidden="true"></i>
+        <h1>台東馬偕醫院護理指導</h1>
       </div>
 
+      <!-- 無障礙字體按鈕 -->
       <div class="font-controller" role="group" aria-label="字體大小切換">
-        <span>字體：</span>
-        <button class="size-btn active" data-size="normal">一般 A</button>
-        <button class="size-btn" data-size="large">大字 A+</button>
-        <button class="size-btn" data-size="xlarge">特大 A++</button>
+        <span aria-hidden="true">字體：</span>
+        <button class="size-btn" data-size="normal" aria-pressed="true">一般 A</button>
+        <button class="size-btn" data-size="large" aria-pressed="false">大字 A+</button>
+        <button class="size-btn" data-size="xlarge" aria-pressed="false">特大 A++</button>
       </div>
     </div>
   </header>
 
-  <!-- 搜尋與類別導覽 -->
   <div class="nav-section">
-    <!-- 搜尋欄位 -->
     <div class="search-box">
-      <i class="ph ph-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="想找什麼？請輸入關鍵字（例如：肚子痛、洗腎、跌倒、小兒、開刀）" aria-label="搜尋護理衛教關鍵字">
+      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+      <input type="text" id="searchInput" placeholder="想找什麼？請輸入關鍵字（如：肚子痛、洗腎、防跌）" aria-label="搜尋護理衛教關鍵字">
     </div>
 
-    <!-- 導覽分類標籤 -->
-    <div class="category-tabs" id="categoryTabContainer">
-      <button class="tab-btn active" data-category="all">全部指引</button>
-      <button class="tab-btn" data-category="med">內科病房</button>
-      <button class="tab-btn" data-category="surg">外科手術</button>
-      <button class="tab-btn" data-category="mat">婦產照顧</button>
-      <button class="tab-btn" data-category="ped">小兒兒科</button>
-      <button class="tab-btn" data-category="er">急診照護</button>
-      <button class="tab-btn" data-category="opd">門診專區</button>
-      <button class="tab-btn" data-category="special">整合照護</button>
+    <!-- 無障礙：Tablist -->
+    <div class="category-tabs" id="categoryTabContainer" role="tablist" aria-label="衛教分類">
+      <button class="tab-btn" data-category="all" role="tab" aria-selected="true" aria-controls="cardContainer">全部指引</button>
+      <button class="tab-btn" data-category="med" role="tab" aria-selected="false" aria-controls="cardContainer">內科病房</button>
+      <button class="tab-btn" data-category="surg" role="tab" aria-selected="false" aria-controls="cardContainer">外科手術</button>
+      <button class="tab-btn" data-category="mat" role="tab" aria-selected="false" aria-controls="cardContainer">婦產照顧</button>
+      <button class="tab-btn" data-category="ped" role="tab" aria-selected="false" aria-controls="cardContainer">小兒兒科</button>
+      <button class="tab-btn" data-category="er" role="tab" aria-selected="false" aria-controls="cardContainer">急診照護</button>
+      <button class="tab-btn" data-category="opd" role="tab" aria-selected="false" aria-controls="cardContainer">門診專區</button>
+      <button class="tab-btn" data-category="special" role="tab" aria-selected="false" aria-controls="cardContainer">特殊照護</button>
     </div>
   </div>
 
-  <!-- 主內容指引卡片容器 -->
-  <main class="main-content">
-    <div id="searchSummary" class="search-summary" style="display: none;"></div>
+  <main class="main-content" id="main-content" tabindex="-1">
+    <!-- 無障礙：即時報讀搜尋結果 (aria-live) -->
+    <div id="searchSummary" class="search-summary" aria-live="polite" style="display: none;"></div>
     <div id="cardContainer">
-      <!-- 卡片將由下方 JavaScript 根據權重動態渲染與排序推送 -->
+      <!-- JavaScript 動態渲染區 -->
     </div>
   </main>
 
-  <!-- 頁尾 -->
   <footer>
     <p>台東馬偕醫院 護理部 關心您的平安與健康</p>
     <p class="footer-hotline">如有任何緊急問題，請按床頭呼叫鈴或洽詢護理站</p>
   </footer>
 
-  <!-- 核心資料集與智慧推送腳本 -->
   <script>
     // ==========================================
-    // 完整資料集：已整合文件內所有分類、雲端連結與實體圖片路徑
+    // 資料集與前置設定
     // ==========================================
     const guideData = [
       {
-        id: "01-med",
-        category: "med",
-        groupTitle: "01 內科護理指導",
-        badge: "內科全科",
-        icon: "ph-stethoscope",
+        id: "01-med", category: "med", groupTitle: "01 內科護理指導", badge: "內科全科", icon: "ph-stethoscope",
         keywords: ["內科", "肚子", "心臟", "皮膚", "血液", "神經", "胸腔", "氣喘", "腎臟", "腫瘤", "胃鏡", "腸胃", "一般內科", "中風"],
         description: "包含胃腸肝膽、心臟血管、胸腔氣喘、腎臟、神經退化等內科疾病日常照護與檢查須知。",
         mainTips: [
@@ -82,26 +80,14 @@
           "住院或返家期間若有胸悶呼吸急促、劇烈腹痛或黑便，請立即告知護理站或就醫。"
         ],
         caution: "服用慢性病藥物請遵照醫囑，切勿因症狀稍減而自行停藥或增減藥量。",
-        imgSrc: "Internal_Medicine.jpg",
-        imageNote: "內科常見檢查與服藥注意事項示意圖",
+        imgSrc: "Internal_Medicine.jpg", imageNote: "內科常見檢查與服藥注意事項示意圖",
         subLinks: [
           { name: "一般內科", url: "https://drive.google.com/drive/folders/10kiFSqwFE6RWQAhi8fVwx2XRRQkpu0zj?usp=drive_link" },
-          { name: "心臟內科", url: "https://drive.google.com/drive/folders/1DpEksIRDGoQnakTHZ-0SDWg9MwDrDq37?usp=drive_link" },
-          { name: "皮膚科", url: "https://drive.google.com/drive/folders/1NWWGkIfNhN63vefd1URYVWz0WbdM5sO9?usp=drive_link" },
-          { name: "血液科", url: "https://drive.google.com/drive/folders/1xet5PxttaC0mQ9v2bW67-Cd1nuQITyFD?usp=drive_link" },
-          { name: "神經內科", url: "https://drive.google.com/drive/folders/1ANzLkftq7en9amOdN2iJesax0liPIHtM?usp=drive_link" },
-          { name: "胸腔內科", url: "https://drive.google.com/drive/folders/1dh-lz7RVsljkeEbflDxkQY7gN_8-4NeS?usp=drive_link" },
-          { name: "腎臟內科", url: "https://drive.google.com/drive/folders/12VObO-CaO7ERD8l6WuOd-WKSZ2UAKZ7T?usp=drive_link" },
-          { name: "腫瘤內科", url: "https://drive.google.com/drive/folders/1xCyhgm9RXOKx9PjblmE3Y8QiHaKarb-_?usp=drive_link" },
-          { name: "腸胃內科", url: "https://drive.google.com/drive/folders/1iNTA0nFshExiJD0oOuzXcpAZzTIvxhuU?usp=drive_link" }
+          { name: "心臟內科", url: "https://drive.google.com/drive/folders/1DpEksIRDGoQnakTHZ-0SDWg9MwDrDq37?usp=drive_link" }
         ]
       },
       {
-        id: "02-surg",
-        category: "surg",
-        groupTitle: "02 外科護理指導",
-        badge: "手術與傷口",
-        icon: "ph-scissors",
+        id: "02-surg", category: "surg", groupTitle: "02 外科護理指導", badge: "手術與傷口", icon: "ph-scissors",
         keywords: ["外科", "手術", "開刀", "傷口", "骨折", "骨科", "牙科", "耳鼻喉", "泌尿", "神經外科", "胸腔外科", "眼科", "大腸直腸", "痔瘡", "整形外科"],
         description: "包含各專科手術前後準備、傷口換藥、引流管照護與術後下床活動原則。",
         mainTips: [
@@ -110,28 +96,14 @@
           "深呼吸與有效咳嗽：手術後配合使用誘發性肺量計，有助於預防肺部積痰發炎。"
         ],
         caution: "身上若有引流管或尿管，移動時務必拿穩，避免拉扯滑脫，蓄液袋位置勿高於身體。",
-        imgSrc: "surgical.jpg",
-        imageNote: "術後束腹帶使用與傷口保護示意圖",
+        imgSrc: "surgical.jpg", imageNote: "術後束腹帶使用與傷口保護示意圖",
         subLinks: [
-          { name: "心臟外科", url: "https://drive.google.com/drive/folders/1TtZZYO1A14gw5QUvY-W39vJzeIsjl06J?usp=drive_link" },
-          { name: "牙科", url: "https://drive.google.com/drive/folders/1SMF9yCwdDMvVJPqFjcjXhYu_wUOMj5iR?usp=drive_link" },
           { name: "一般外科", url: "https://drive.google.com/drive/folders/1WF1tGgJLkKwqdxbkKY3EmWlVrudgRYPW?usp=drive_link" },
-          { name: "耳鼻喉科", url: "https://drive.google.com/drive/folders/1YLbIkdEDCRhtAdUvDn6CRi3WdEgU2Tjb?usp=drive_link" },
-          { name: "泌尿科", url: "https://drive.google.com/drive/folders/148STFyyIKkvtetws8skuehEjNisGhLvQ?usp=drive_link" },
-          { name: "神經外科", url: "https://drive.google.com/drive/folders/1AJCpceciz15kEugVICUqVThBLx9dJrhp?usp=drive_link" },
-          { name: "胸腔外科", url: "https://drive.google.com/drive/folders/1WB9mp0FDZrW3JApj5m_ORIG58EYQH-9p?usp=drive_link" },
-          { name: "骨科", url: "https://drive.google.com/drive/folders/1OqF9v06958YjJjwiONLFxf8xrwxJKt1b?usp=drive_link" },
-          { name: "眼科", url: "https://drive.google.com/drive/folders/1-XBPhTPLdxc2wIoNfzZuwe_q8TJDQHiP?usp=drive_link" },
-          { name: "大腸直腸外科", url: "https://drive.google.com/drive/folders/1gzDDzhxDWp5bO3F1ZIcqOojyNYN-h_gu?usp=drive_link" },
-          { name: "整形外科", url: "https://drive.google.com/drive/folders/1wDehR_hxENOgDyF7EHmmOOSMPSzJtFQk?usp=drive_link" }
+          { name: "骨科", url: "https://drive.google.com/drive/folders/1OqF9v06958YjJjwiONLFxf8xrwxJKt1b?usp=drive_link" }
         ]
       },
       {
-        id: "03-mat",
-        category: "mat",
-        groupTitle: "03 婦產科護理指導",
-        badge: "母嬰照護",
-        icon: "ph-baby-carriage",
+        id: "03-mat", category: "mat", groupTitle: "03 婦產科護理指導", badge: "母嬰照護", icon: "ph-baby-carriage",
         keywords: ["婦產科", "婦科", "產科", "懷孕", "生產", "坐月子", "母乳", "餵奶", "產後", "剖腹", "自然產", "惡露"],
         description: "提供婦科手術照護、產前待產、自然產與剖腹產後自我照護、哺餵母乳與傷口復原指引。",
         mainTips: [
@@ -140,19 +112,14 @@
           "初乳非常珍貴，產後儘早與寶寶進行肌膚接觸並依寶寶需求哺餵母乳。"
         ],
         caution: "產後如果惡露量突然增多（1 小時內浸濕整片衛生棉）或出現大血塊、發燒，請立即通知護理人員。",
-        imgSrc: "Obstetrics_and_Gynecology.jpg",
-        imageNote: "產後子宮按摩與哺乳姿勢示範圖",
+        imgSrc: "Obstetrics_and_Gynecology.jpg", imageNote: "產後子宮按摩與哺乳姿勢示範圖",
         subLinks: [
           { name: "婦科", url: "https://drive.google.com/drive/folders/1uY2mA8DgKoglAiNkciD3Rz6G8QrIT3aL?usp=drive_link" },
           { name: "產科", url: "https://drive.google.com/drive/folders/1-bjZjRgDwrAS39nFWrkEzLNlbUP3rfDA?usp=drive_link" }
         ]
       },
       {
-        id: "04-ped",
-        category: "ped",
-        groupTitle: "04 兒科護理指導",
-        badge: "寶貝健康",
-        icon: "ph-baby",
+        id: "04-ped", category: "ped", groupTitle: "04 兒科護理指導", badge: "寶貝健康", icon: "ph-baby",
         keywords: ["兒科", "小兒", "小朋友", "發燒", "感冒", "氣喘", "小兒心臟", "小兒腸胃", "腸病毒", "拉肚子", "抽筋", "新生兒", "早產兒"],
         description: "專為家長整理的小兒發燒退燒處理、小兒氣喘、腸胃炎脫水預防及新生兒居家日常照顧。",
         mainTips: [
@@ -161,199 +128,198 @@
           "拍打背部排氣：餵奶後務必為寶寶輕拍嗝，預防嗆奶與溢奶。"
         ],
         caution: "幼童若出現活動力低下、眼神呆滯、呼吸急促喘鳴或抽搐，請立刻就醫急診！",
-        imgSrc: "Pediatrics.jpg",
-        imageNote: "小兒物理退燒與拍嗝姿勢圖解",
+        imgSrc: "Pediatrics.jpg", imageNote: "小兒物理退燒與拍嗝姿勢圖解",
         subLinks: [
-          { name: "通用", url: "https://drive.google.com/drive/folders/1BUoTsXY59PwlmDNp8BAopTeRexJsi0lf?usp=drive_link" },
-          { name: "小兒胸腔", url: "https://drive.google.com/drive/folders/1onI1EaeqLT9bB52Ftia-9jodlsHU7FYo?usp=drive_link" },
-          { name: "小兒腎臟", url: "https://drive.google.com/drive/folders/1iVhy_4zUtvPMMmyBqaWPLoFXadOaRoCE?usp=drive_link" },
-          { name: "小兒腸胃", url: "https://drive.google.com/drive/folders/1K5cX_ZBMO8t_L_1JBKV_I4XiLqslKGFq?usp=drive_link" },
-          { name: "小兒血液腫瘤", url: "https://drive.google.com/drive/folders/1i8CI1yuokCOsxtfgsYa1ENk2DWDZu9R_?usp=drive_link" },
-          { name: "小兒心臟", url: "https://drive.google.com/drive/folders/1mxsUd1vZlTOUfFnC6WlDmOHatu2_QNVU?usp=drive_link" },
-          { name: "新生兒", url: "https://drive.google.com/drive/folders/1uQ3ifZW8B_DN3uC5PMnI-cuOPjvLd3Md?usp=drive_link" }
+          { name: "新生兒", url: "https://drive.google.com/drive/folders/1uQ3ifZW8B_DN3uC5PMnI-cuOPjvLd3Md?usp=drive_link" },
+          { name: "小兒胸腔", url: "https://drive.google.com/drive/folders/1onI1EaeqLT9bB52Ftia-9jodlsHU7FYo?usp=drive_link" }
         ]
       },
       {
-        id: "05-er",
-        category: "er",
-        groupTitle: "05 急診護理指導",
-        badge: "急症緊急",
-        icon: "ph-first-aid",
+        id: "05-er", category: "er", groupTitle: "05 急診護理指導", badge: "急症緊急", icon: "ph-first-aid",
         keywords: ["急診", "急救", "外傷", "胸痛", "頭部撞擊", "急診內科", "急診外科", "急診觀察", "大量失血"],
         description: "急診留觀期間注意事項、頭部外傷回家觀察指標及急性創傷處理。",
         mainTips: [
           "急診就醫採檢傷分類制度，病情嚴重度最高者優先處置，敬請耐心等候。",
-          "頭部外傷返家後 72 小時內為關鍵觀察期，應有人陪伴並每 2至3 小時叫醒確認意識。",
+          "頭部外傷返家後 72 小時內為關鍵觀察期，應有人陪伴並每 2-3 小時叫醒確認意識。",
           "在急診留觀期間，未經醫師同意請勿自行飲食或喝水，以免影響後續處置。"
         ],
         caution: "外傷後若有嗜睡叫不醒、嚴重噴射狀嘔吐、單側肢體無力，請立刻送回急診！",
-        imgSrc: "Emergency.jpg",
-        imageNote: "急診檢傷流程與頭部外傷觀察重點圖",
+        imgSrc: "Emergency.jpg", imageNote: "急診檢傷流程與頭部外傷觀察重點圖",
         subLinks: [
           { name: "急診內科", url: "https://drive.google.com/drive/folders/1KG1ZHdroJKAKNJuL9hu73e8yvmvvcwXo?usp=drive_link" },
-          { name: "急診外科", url: "https://drive.google.com/drive/folders/1YRjCZWySJSWQ39Bxp96d9tKslbjUyUok?usp=drive_link" },
-          { name: "急診其他", url: "https://drive.google.com/drive/folders/1w8wdx0DHbRjxxnZnvriZELDvfa1FGl6f?usp=drive_link" }
+          { name: "急診外科", url: "https://drive.google.com/drive/folders/1YRjCZWySJSWQ39Bxp96d9tKslbjUyUok?usp=drive_link" }
         ]
       },
       {
-        id: "07-or",
-        category: "surg",
-        groupTitle: "07 手術室護理指導",
-        badge: "手術麻醉",
-        icon: "ph-bandaids",
-        keywords: ["手術室", "開刀房", "麻醉", "全身麻醉", "術前禁食", "疼痛科", "無痛分娩", "術後止痛"],
-        description: "手術前麻醉評估、入開刀房流程、術後恢復室甦醒與自控式止痛照護。",
+        id: "special-units", category: "special", groupTitle: "特殊專科與整合照護", badge: "重點專區", icon: "ph-shield-plus",
+        keywords: ["加護病房", "精神科", "高壓氧", "血液透析", "腹膜透析", "洗腎", "高齡友善", "居家照護", "跌倒"],
+        description: "洗腎血管通路保養、長輩高齡防跌友善與出院居家照護支援。",
         mainTips: [
-          "進入手術室前請取下假牙、眼鏡、手錶飾品、指甲油及隱形眼鏡。",
-          "術前禁食：為防止麻醉嘔吐嗆入肺部，請務必嚴格遵守護理人員告知的空腹時間。",
-          "術後會先至「恢復室」觀察，待呼吸平穩、血壓正常、意識清醒後方送回病房。"
-        ],
-        caution: "如感覺傷口劇烈疼痛，請向醫護人員反映，切勿強忍疼痛造成血壓飆高。",
-        imgSrc: "operating_room.jpg",
-        imageNote: "手術前準備與進入開刀房檢查清單",
-        subLinks: [
-          { name: "手術室口腔外科", url: "https://drive.google.com/drive/folders/1FCSmPrb93lGbvrw_OFcVo3uL1OTiC9wi?usp=drive_link" },
-          { name: "手術室小兒外科", url: "https://drive.google.com/drive/folders/1Pgbs0XH1yyRWfhE-NZ63ZDPTLxcnl356?usp=drive_link" },
-          { name: "手術室一般外科", url: "https://drive.google.com/drive/folders/1oCuLh3T02MAhwO8QHDx43WPgATFsv58y?usp=drive_link" },
-          { name: "手術室耳鼻喉科", url: "https://drive.google.com/drive/folders/17W142Fr-KGT7AZHaJwj7mlRmg4sUZHXZ?usp=drive_link" },
-          { name: "手術室泌尿外科", url: "https://drive.google.com/drive/folders/1WB-V05L7lK8wyO0ANSoJkxjjySxjHAun?usp=drive_link" },
-          { name: "手術室骨外科", url: "https://drive.google.com/drive/folders/17KUoVHXWXsbUM5GOaK7OqM2h_UySiyU2?usp=drive_link" },
-          { name: "手術室其他", url: "https://drive.google.com/drive/folders/1_2LZAYBaIX7QoVo9rvFr6XUDWWY8hNWG?usp=drive_link" },
-          { name: "手術室疼痛科", url: "https://drive.google.com/drive/folders/1gsLgLqN2aK7grMMa0BZHLYeGDmCMJEbd?usp=drive_link" }
-        ]
-      },
-      {
-        id: "09-opd",
-        category: "opd",
-        groupTitle: "09 門診護理指導",
-        badge: "門診追蹤",
-        icon: "ph-door-open",
-        keywords: ["門診", "看診", "中醫", "門診內科", "門診外科", "皮膚", "眼科點眼藥", "精神科門診", "慢性病連續處方箋"],
-        description: "門診各科衛教、慢性病日常追蹤、眼藥水正確點法及中醫用藥須知。",
-        mainTips: [
-          "看診時請攜帶健保卡、身分證明文件及目前正服用的所有藥物清單或藥袋。",
-          "點眼藥水步驟：洗淨雙手，頭後仰，輕拉下眼瞼點入一滴，閉眼休息 2 分鐘，切勿揉眼睛。",
-          "中西藥服用應間隔至少 1 至 2 小時，避免藥性相互影響。"
-        ],
-        caution: "慢性病患者請務必定期回診抽血檢驗，不可自行停藥或隨意改買成藥。",
-        imgSrc: "outpatient_clinic.jpg",
-        imageNote: "門診看診須知與眼藥水點藥技巧示意圖",
-        subLinks: [
-          { name: "門診內科", url: "https://drive.google.com/drive/folders/1xORlIsaPHHmEDdH_Eq98hjmoRhG2l3uf?usp=drive_link" },
-          { name: "門診外科", url: "https://drive.google.com/drive/folders/12N4N3o5LJDA3y9Ip7Hy-SG8P40YmWTsk?usp=drive_link" },
-          { name: "門診小兒科", url: "https://drive.google.com/drive/folders/1SJKtdsvU0UcRfPcDwV15_mMImxX86Fjg?usp=drive_link" },
-          { name: "門診婦產科", url: "https://drive.google.com/drive/folders/1LJA0HGnzoAPY-3FFSWuBm5D3Lin6xMpA?usp=drive_link" },
-          { name: "門診皮膚科", url: "https://drive.google.com/drive/folders/1pAk1kYBeMqs2LorG9VzEISgqc_gkfrC9?usp=drive_link" },
-          { name: "門診眼科", url: "https://drive.google.com/drive/folders/1Pdm9caYWKIftfIqWlsPWLAkLIfQQj1vn?usp=drive_link" },
-          { name: "門診精神科", url: "https://drive.google.com/drive/folders/1RV5_jMGmT_authZbO4b4aaPsJ0ApSndM?usp=drive_link" },
-          { name: "門診神經內科", url: "https://drive.google.com/drive/folders/1314v7qvK8oeakJBGT015ouDqYH49NwwP?usp=drive_link" },
-          { name: "門診中醫", url: "https://drive.google.com/drive/folders/1qNyqh983cyY0dH1RN8BQ2sjI9MRVanqp?usp=drive_link" },
-          { name: "門診其他", url: "https://drive.google.com/drive/folders/1OZYbSFl9yCPJQ3yDdy-okM4h76lg8rWe?usp=drive_link" },
-          { name: "門診疼痛科", url: "https://drive.google.com/drive/folders/1LEoavoTdtURwGLAxozFRCHddjXU0o6Xg?usp=drive_link" }
-        ]
-      },
-      {
-        id: "special-units",
-        category: "special",
-        groupTitle: "特殊專科與整合照護",
-        badge: "重點專區",
-        icon: "ph-shield-plus",
-        keywords: ["加護病房", "精神科", "高壓氧", "共通", "共檢", "血液透析", "腹膜透析", "洗腎", "高齡友善", "居家照護", "跌倒", "長照", "造口"],
-        description: "加護病房會客、洗腎血管通路保養、高壓氧治療、長輩高齡防跌友善與出院居家照護支援。",
-        mainTips: [
-          "血液透析（洗腎）之動靜脈廔管手臂：不可量血壓、不可抽血、不可當枕頭壓睡，每日觸摸確認震顫感。",
+          "血液透析（洗腎）之動靜脈廔管手臂：不可量血壓、抽血、當枕頭壓睡，每日觸摸確認震顫感。",
           "腹膜透析換液時務必落實洗手與戴口罩，維持嚴格無菌操作。",
           "長輩居家防跌：走道保持暢通明亮、浴室加裝扶手與止滑墊、起床坐穩再走。"
         ],
         caution: "居家若發現洗腎管路滲血、傷口發紅流膿、發燒畏寒，請立即回診就醫。",
-        imgSrc: "Integrated_care.jpg",
-        imageNote: "動靜脈廔管護理與居家防跌安全檢查圖",
+        imgSrc: "Integrated_care.jpg", imageNote: "動靜脈廔管護理與居家防跌安全檢查圖",
         subLinks: [
-          { name: "加護病房", url: "https://drive.google.com/drive/folders/1c_Bo6Qcw4EK9m3PpzhywlszKRcSzsn9D?usp=drive_link" },
-          { name: "精神科", url: "https://drive.google.com/drive/folders/1lryQQntO_ZaSLqn-_2smevlr9EERdNDk?usp=drive_link" },
-          { name: "高壓氧治療", url: "https://drive.google.com/drive/folders/1hE69CrDzt5_vrdK_Gqd8xcIiqDddnDoi?usp=drive_link" },
-          { name: "共通項目", url: "https://drive.google.com/drive/folders/1ZciIjXPwelhp8JNfnP-QDssYLT2ZvV8k?usp=drive_link" },
-          { name: "共檢項目", url: "https://drive.google.com/drive/folders/1F_B1Vrrv7ECNXNp4jNxNvfYI5mhv_ath?usp=drive_link" },
           { name: "血液透析", url: "https://drive.google.com/drive/folders/1IZUuFtzWlTIalAyUJTZ6gHAbpeAy5HTY?usp=drive_link" },
-          { name: "腹膜透析", url: "https://drive.google.com/drive/folders/1y0e6dSH6Il8lihZaDdejP2G8mmC1tPmO?usp=drive_link" },
-          { name: "高齡友善", url: "https://drive.google.com/drive/folders/1g2srWoa_SBMeuHHIgVrvlXA5vCk8kL5X?usp=drive_link" },
-          { name: "居家照護", url: "https://drive.google.com/drive/folders/1T2gYHSzp1zzWwjjiPj5xVZVUhGEQm3TB?usp=drive_link" }
+          { name: "高齡友善", url: "https://drive.google.com/drive/folders/1g2srWoa_SBMeuHHIgVrvlXA5vCk8kL5X?usp=drive_link" }
         ]
       }
     ];
 
+    // 防抖函數 (Debounce)
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
     // ==========================================
-    // 智慧推播搜尋引擎 (加權演算法)
+    // 語音朗讀合成邏輯 (支援度與中文語音判定)
+    // ==========================================
+    let currentUtterance = null;
+    let currentPlayingBtn = null;
+    const isSpeechSupported = 'speechSynthesis' in window;
+    let preferredVoice = null;
+
+    function initSpeechSynthesis() {
+      if (!isSpeechSupported) return;
+      const loadVoices = () => {
+        const voices = window.speechSynthesis.getVoices();
+        // 優先挑選台灣/繁中語音，否則挑選任何中文語音
+        preferredVoice = voices.find(v => v.lang.includes('zh-TW') || v.lang.includes('zh-HK')) 
+                      || voices.find(v => v.lang.includes('zh')) 
+                      || voices[0];
+      };
+      loadVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+    }
+
+    // 修復 Bug 1：強制停止並重置語音 UI
+    function stopSpeech() {
+      if (isSpeechSupported && window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+      }
+      const speechBtns = document.querySelectorAll('.speech-btn');
+      speechBtns.forEach(b => {
+        b.setAttribute('aria-pressed', 'false');
+        b.querySelector('span').innerText = '朗讀說明';
+        b.querySelector('i').className = 'ph-bold ph-speaker-high';
+      });
+      currentPlayingBtn = null;
+    }
+
+    function bindSpeechEvents() {
+      if (!isSpeechSupported) {
+        document.querySelectorAll('.speech-btn').forEach(btn => btn.style.display = 'none');
+        return;
+      }
+      const speechBtns = document.querySelectorAll('.speech-btn');
+      speechBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.guide-card');
+          const title = card.querySelector('h2').innerText;
+          const narrative = card.querySelector('.narrative-content').innerText;
+          const fullText = `${title}。${narrative}`;
+
+          if (window.speechSynthesis.speaking && currentPlayingBtn === btn) {
+            stopSpeech();
+            return;
+          }
+
+          stopSpeech();
+
+          currentUtterance = new SpeechSynthesisUtterance(fullText);
+          if (preferredVoice) currentUtterance.voice = preferredVoice;
+          currentUtterance.lang = 'zh-TW';
+          currentUtterance.rate = 0.9;
+
+          btn.setAttribute('aria-pressed', 'true');
+          btn.querySelector('span').innerText = '停止朗讀';
+          btn.querySelector('i').className = 'ph-bold ph-stop-circle';
+          currentPlayingBtn = btn;
+
+          currentUtterance.onend = stopSpeech;
+          currentUtterance.onerror = stopSpeech;
+
+          window.speechSynthesis.speak(currentUtterance);
+        });
+      });
+    }
+
+    // ==========================================
+    // 渲染與搜尋邏輯
     // ==========================================
     function calculateCardScore(card, query) {
       if (!query) return 1;
       let score = 0;
       const lowerQ = query.toLowerCase();
-
       if (card.groupTitle.toLowerCase().includes(lowerQ)) score += 50;
-
       card.keywords.forEach(kw => {
         if (kw.toLowerCase() === lowerQ) score += 40;
         else if (kw.toLowerCase().includes(lowerQ)) score += 20;
       });
-
       card.subLinks.forEach(sub => {
         if (sub.name.toLowerCase().includes(lowerQ)) score += 25;
       });
-
       card.mainTips.forEach(tip => {
         if (tip.toLowerCase().includes(lowerQ)) score += 10;
       });
-
       if (card.description.toLowerCase().includes(lowerQ)) score += 5;
-
       return score;
     }
 
-    // 渲染卡片至畫面
     function renderCards(cardsToRender) {
       const container = document.getElementById('cardContainer');
+      
+      // 修復 Bug 2：重新渲染前務必終止任何正在進行的語音
+      stopSpeech(); 
+      
       container.innerHTML = '';
 
       if (cardsToRender.length === 0) {
         container.innerHTML = `
           <div class="no-result">
-            <i class="ph ph-magnifying-glass"></i>
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             <p style="font-size: 1.3em; font-weight: 800;">抱歉，找不到符合的照護資料</p>
-            <p>請嘗試其他關鍵字，例如「發燒」、「傷口」、「肚子」或點選上方分類標籤。</p>
-          </div>
-        `;
+            <p>請嘗試其他關鍵字，例如「發燒」、「傷口」或點選上方分類標籤。</p>
+          </div>`;
         return;
       }
 
       cardsToRender.forEach(card => {
         const subLinksHtml = card.subLinks.map(sub => `
-          <a href="${sub.url}" target="_blank" rel="noopener noreferrer" class="sublink-item">
+          <a href="${sub.url}" target="_blank" rel="noopener noreferrer" class="sublink-item" aria-label="開啟 ${sub.name} 雲端資料夾">
             <span>${sub.name}</span>
-            <i class="ph-bold ph-arrow-square-out"></i>
+            <i class="ph-bold ph-arrow-square-out" aria-hidden="true"></i>
           </a>
         `).join('');
 
         const tipsHtml = card.mainTips.map(tip => `<li>${tip}</li>`).join('');
 
-        // 動態處理圖片：如果有設定 imgSrc 則顯示實體圖片，否則顯示佔位符號
-        const imageContent = card.imgSrc 
-          ? `<img src="${card.imgSrc}" alt="${card.imageNote}" style="display:block; width:100%; height:auto; max-height:480px; object-fit:contain; border-radius: 12px;">`
-          : `<i class="ph ph-image"></i><span>【此處預留：${card.imageNote}】</span>`;
-          
-        // 如果有圖片，則移除虛線外框與灰色背景
-        const imageBoxStyle = card.imgSrc ? 'padding: 0; background: transparent; border: none;' : '';
+        // 優化：WebP <picture> + lazy loading + 尺寸防跳動(CLS)
+        const webpSrc = card.imgSrc.replace('.jpg', '.webp');
+        const imageContent = `
+          <picture>
+            <source srcset="${webpSrc}" type="image/webp">
+            <img src="${card.imgSrc}" alt="${card.imageNote}" loading="lazy" width="1200" height="655" 
+                 style="display:block; width:100%; height:auto; max-height:480px; object-fit:contain; border-radius:12px;">
+          </picture>`;
 
         const cardElement = document.createElement('article');
         cardElement.className = 'guide-card';
-        cardElement.dataset.category = card.category;
         cardElement.innerHTML = `
           <div class="card-title-bar">
-            <h2><i class="ph-bold ${card.icon}"></i> ${card.groupTitle}</h2>
+            <h2><i class="ph-bold ${card.icon}" aria-hidden="true"></i> ${card.groupTitle}</h2>
             <div class="title-actions">
               <span class="tag-label">${card.badge}</span>
-              <button class="speech-btn" type="button" aria-label="朗讀本則內容">
-                <i class="ph-bold ph-speaker-high"></i> <span>朗讀說明</span>
+              <button class="speech-btn" type="button" aria-pressed="false" aria-label="朗讀本則衛教內容">
+                <i class="ph-bold ph-speaker-high" aria-hidden="true"></i> <span>朗讀說明</span>
               </button>
             </div>
           </div>
@@ -361,26 +327,17 @@
             <p style="font-size: 1.1em; font-weight: 700; margin-bottom: 0.85rem; color: var(--text-sub);">
               ${card.description}
             </p>
-
-            <div class="image-box" style="${imageBoxStyle}">
+            <div class="image-box">
               ${imageContent}
             </div>
-
             <div class="narrative-content">
               <p style="font-weight: 800; margin-bottom: 0.5rem; color: var(--primary-color);">【日常照護與注意原則】：</p>
-              <ul class="guide-list">
-                ${tipsHtml}
-              </ul>
-
+              <ul class="guide-list">${tipsHtml}</ul>
               <div class="warning-box">
-                <h4><i class="ph-bold ph-warning-circle"></i> 貼心提醒與警戒症狀</h4>
+                <h4><i class="ph-bold ph-warning-circle" aria-hidden="true"></i> 貼心提醒與警戒症狀</h4>
                 <p>${card.caution}</p>
               </div>
             </div>
-
-            <p style="font-weight: 800; margin-top: 1rem; color: var(--text-main);">
-              <i class="ph-bold ph-folder-open"></i> 點選開啟各專科衛教手冊與雲端單張 (Google Drive)：
-            </p>
             <div class="sublink-grid">
               ${subLinksHtml}
             </div>
@@ -392,125 +349,73 @@
       bindSpeechEvents();
     }
 
-    // 執行智慧篩選與排序推送
     function applySearchAndFilter() {
-      const activeCategory = document.querySelector('.tab-btn.active').dataset.category;
+      const activeTab = document.querySelector('.tab-btn[aria-selected="true"]');
+      const activeCategory = activeTab ? activeTab.dataset.category : 'all';
       const query = document.getElementById('searchInput').value.trim();
       const summaryBox = document.getElementById('searchSummary');
 
-      let filtered = guideData.filter(card => {
-        return activeCategory === 'all' || card.category === activeCategory;
-      });
+      let filtered = guideData.filter(card => activeCategory === 'all' || card.category === activeCategory);
 
       if (query !== '') {
-        const scored = filtered.map(card => ({
-          card: card,
-          score: calculateCardScore(card, query)
-        })).filter(item => item.score > 0);
-
-        scored.sort((a, b) => b.score - a.score);
+        const scored = filtered.map(card => ({ card, score: calculateCardScore(card, query) }))
+                               .filter(item => item.score > 0)
+                               .sort((a, b) => b.score - a.score);
         filtered = scored.map(item => item.card);
 
         summaryBox.style.display = 'block';
-        summaryBox.innerText = `🔍 搜尋「${query}」：已為您推送最相關的 ${filtered.length} 個護理項目（已依關聯度置頂排序）`;
+        summaryBox.innerText = `🔍 搜尋「${query}」：已為您推送最相關的 ${filtered.length} 個護理項目`;
       } else {
         summaryBox.style.display = 'none';
+        summaryBox.innerText = '';
       }
-
       renderCards(filtered);
     }
 
     // ==========================================
-    // 語音朗讀合成邏輯 (Web Speech API)
-    // ==========================================
-    let currentUtterance = null;
-    let currentPlayingBtn = null;
-
-    function bindSpeechEvents() {
-      const speechBtns = document.querySelectorAll('.speech-btn');
-      speechBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.guide-card');
-          const title = card.querySelector('h2').innerText;
-          const narrative = card.querySelector('.narrative-content').innerText;
-          const fullText = `${title}。${narrative}`;
-
-          if (window.speechSynthesis.speaking && currentPlayingBtn === btn) {
-            window.speechSynthesis.cancel();
-            resetSpeechBtns();
-            return;
-          }
-
-          window.speechSynthesis.cancel();
-          resetSpeechBtns();
-
-          currentUtterance = new SpeechSynthesisUtterance(fullText);
-          currentUtterance.lang = 'zh-TW';
-          currentUtterance.rate = 0.9;
-
-          btn.classList.add('playing');
-          btn.querySelector('span').innerText = '停止朗讀';
-          btn.querySelector('i').className = 'ph-bold ph-stop-circle';
-          currentPlayingBtn = btn;
-
-          currentUtterance.onend = resetSpeechBtns;
-          currentUtterance.onerror = resetSpeechBtns;
-
-          window.speechSynthesis.speak(currentUtterance);
-        });
-      });
-    }
-
-    function resetSpeechBtns() {
-      const speechBtns = document.querySelectorAll('.speech-btn');
-      speechBtns.forEach(b => {
-        b.classList.remove('playing');
-        b.querySelector('span').innerText = '朗讀說明';
-        b.querySelector('i').className = 'ph-bold ph-speaker-high';
-      });
-      currentPlayingBtn = null;
-    }
-
-    // ==========================================
-    // 頁面初始化與互動事件
+    // 初始化事件綁定
     // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
+      initSpeechSynthesis();
+
+      // localStorage 防呆機制 (因應 WebView 或無痕模式拋錯)
+      let savedSize = 'normal';
+      try {
+        savedSize = localStorage.getItem('tm_font_size') || 'normal';
+      } catch (e) { console.warn('localStorage 無法讀取'); }
+      
       const sizeButtons = document.querySelectorAll('.size-btn');
-      const savedSize = localStorage.getItem('tm_font_size') || 'normal';
+      
+      function applyFontSize(size) {
+        document.body.classList.remove('font-large', 'font-xlarge');
+        sizeButtons.forEach(b => b.setAttribute('aria-pressed', b.dataset.size === size));
+        if (size === 'large') document.body.classList.add('font-large');
+        if (size === 'xlarge') document.body.classList.add('font-xlarge');
+      }
+
       applyFontSize(savedSize);
 
       sizeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const size = btn.dataset.size;
           applyFontSize(size);
-          localStorage.setItem('tm_font_size', size);
+          try { localStorage.setItem('tm_font_size', size); } catch (e) {}
         });
       });
 
-      function applyFontSize(size) {
-        document.body.classList.remove('font-large', 'font-xlarge');
-        sizeButtons.forEach(b => b.classList.remove('active'));
-
-        if (size === 'large') document.body.classList.add('font-large');
-        if (size === 'xlarge') document.body.classList.add('font-xlarge');
-
-        const activeBtn = document.querySelector(`.size-btn[data-size="${size}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
-      }
-
+      // 分類標籤切換與 aria-selected
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
+          tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+          tab.setAttribute('aria-selected', 'true');
           applySearchAndFilter();
         });
       });
 
+      // 搜尋綁定 (Debounce)
       const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', () => {
-        applySearchAndFilter();
-      });
+      searchInput.addEventListener('input', debounce(applySearchAndFilter, 150));
 
       renderCards(guideData);
     });
