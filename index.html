@@ -7,15 +7,9 @@
   <meta name="description" content="台東馬偕醫院病人與家屬專用之護理衛教指導系統，提供防跌、手術、檢查、管路照護等衛教資訊與雲端表單下載。">
   <title>東馬護理指導系統 - 病人與家屬照護專區</title>
   
-  <!-- ================= 新增：網頁專屬圖示 (Favicon & 手機主畫面圖示) ================= -->
-  <!-- 根據您資料夾內的檔案名稱，直接載入 JPG 作為網頁標籤圖示 -->
+  <!-- ================= 網頁專屬圖示 (Favicon & 手機主畫面圖示) ================= -->
   <link rel="icon" href="Shortcut_diagram.jpg" type="image/jpeg">
-  
-  <!-- 【關鍵】針對手機 (iOS/Android)「加入主畫面」時的專屬 APP 圖示 -->
   <link rel="apple-touch-icon" href="Shortcut_diagram.jpg">
-  
-  <!-- (備用) 若您後續仍想使用轉檔好的 ico 檔，可將上方 href 換成下方這行 -->
-  <!-- <link rel="icon" href="護理作業標準規範互動導覽系統.ico" type="image/x-icon"> -->
   <!-- ================================================================================= -->
 
   <link rel="stylesheet" href="style.css">
@@ -47,7 +41,7 @@
   <div class="nav-section">
     <div class="search-box">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-      <input type="text" id="searchInput" placeholder="想找什麼？請輸入關鍵字（如：肚子痛、洗腎、防跌）" aria-label="搜尋護理衛教關鍵字">
+      <input type="text" id="searchInput" placeholder="想找什麼？請輸入關鍵字（如：急診 外傷、門診 眼藥水）" aria-label="搜尋護理衛教關鍵字">
     </div>
 
     <!-- 無障礙：Tablist -->
@@ -94,7 +88,14 @@
         imgSrc: "Internal_Medicine.jpg", imageNote: "內科常見檢查與服藥注意事項示意圖",
         subLinks: [
           { name: "一般內科", url: "https://drive.google.com/drive/folders/10kiFSqwFE6RWQAhi8fVwx2XRRQkpu0zj?usp=drive_link" },
-          { name: "心臟內科", url: "https://drive.google.com/drive/folders/1DpEksIRDGoQnakTHZ-0SDWg9MwDrDq37?usp=drive_link" }
+          { name: "心臟內科", url: "https://drive.google.com/drive/folders/1DpEksIRDGoQnakTHZ-0SDWg9MwDrDq37?usp=drive_link" },
+          { name: "皮膚科", url: "https://drive.google.com/drive/folders/1NWWGkIfNhN63vefd1URYVWz0WbdM5sO9?usp=drive_link" },
+          { name: "血液科", url: "https://drive.google.com/drive/folders/1xet5PxttaC0mQ9v2bW67-Cd1nuQITyFD?usp=drive_link" },
+          { name: "神經內科", url: "https://drive.google.com/drive/folders/1ANzLkftq7en9amOdN2iJesax0liPIHtM?usp=drive_link" },
+          { name: "胸腔內科", url: "https://drive.google.com/drive/folders/1dh-lz7RVsljkeEbflDxkQY7gN_8-4NeS?usp=drive_link" },
+          { name: "腎臟內科", url: "https://drive.google.com/drive/folders/12VObO-CaO7ERD8l6WuOd-WKSZ2UAKZ7T?usp=drive_link" },
+          { name: "腫瘤內科", url: "https://drive.google.com/drive/folders/1xCyhgm9RXOKx9PjblmE3Y8QiHaKarb-_?usp=drive_link" },
+          { name: "腸胃內科", url: "https://drive.google.com/drive/folders/1iNTA0nFshExiJD0oOuzXcpAZzTIvxhuU?usp=drive_link" }
         ]
       },
       {
@@ -110,7 +111,16 @@
         imgSrc: "surgical.jpg", imageNote: "術後束腹帶使用與傷口保護示意圖",
         subLinks: [
           { name: "一般外科", url: "https://drive.google.com/drive/folders/1WF1tGgJLkKwqdxbkKY3EmWlVrudgRYPW?usp=drive_link" },
-          { name: "骨科", url: "https://drive.google.com/drive/folders/1OqF9v06958YjJjwiONLFxf8xrwxJKt1b?usp=drive_link" }
+          { name: "心臟外科", url: "https://drive.google.com/drive/folders/1TtZZYO1A14gw5QUvY-W39vJzeIsjl06J?usp=drive_link" },
+          { name: "牙科", url: "https://drive.google.com/drive/folders/1SMF9yCwdDMvVJPqFjcjXhYu_wUOMj5iR?usp=drive_link" },
+          { name: "耳鼻喉科", url: "https://drive.google.com/drive/folders/1YLbIkdEDCRhtAdUvDn6CRi3WdEgU2Tjb?usp=drive_link" },
+          { name: "泌尿科", url: "https://drive.google.com/drive/folders/148STFyyIKkvtetws8skuehEjNisGhLvQ?usp=drive_link" },
+          { name: "神經外科", url: "https://drive.google.com/drive/folders/1AJCpceciz15kEugVICUqVThBLx9dJrhp?usp=drive_link" },
+          { name: "胸腔外科", url: "https://drive.google.com/drive/folders/1WB9mp0FDZrW3JApj5m_ORIG58EYQH-9p?usp=drive_link" },
+          { name: "骨科", url: "https://drive.google.com/drive/folders/1OqF9v06958YjJjwiONLFxf8xrwxJKt1b?usp=drive_link" },
+          { name: "眼科", url: "https://drive.google.com/drive/folders/1-XBPhTPLdxc2wIoNfzZuwe_q8TJDQHiP?usp=drive_link" },
+          { name: "大腸直腸外科", url: "https://drive.google.com/drive/folders/1gzDDzhxDWp5bO3F1ZIcqOojyNYN-h_gu?usp=drive_link" },
+          { name: "整形外科", url: "https://drive.google.com/drive/folders/1wDehR_hxENOgDyF7EHmmOOSMPSzJtFQk?usp=drive_link" }
         ]
       },
       {
@@ -141,8 +151,13 @@
         caution: "幼童若出現活動力低下、眼神呆滯、呼吸急促喘鳴或抽搐，請立刻就醫急診！",
         imgSrc: "Pediatrics.jpg", imageNote: "小兒物理退燒與拍嗝姿勢圖解",
         subLinks: [
-          { name: "新生兒", url: "https://drive.google.com/drive/folders/1uQ3ifZW8B_DN3uC5PMnI-cuOPjvLd3Md?usp=drive_link" },
-          { name: "小兒胸腔", url: "https://drive.google.com/drive/folders/1onI1EaeqLT9bB52Ftia-9jodlsHU7FYo?usp=drive_link" }
+          { name: "通用", url: "https://drive.google.com/drive/folders/1BUoTsXY59PwlmDNp8BAopTeRexJsi0lf?usp=drive_link" },
+          { name: "小兒胸腔", url: "https://drive.google.com/drive/folders/1onI1EaeqLT9bB52Ftia-9jodlsHU7FYo?usp=drive_link" },
+          { name: "小兒腎臟", url: "https://drive.google.com/drive/folders/1iVhy_4zUtvPMMmyBqaWPLoFXadOaRoCE?usp=drive_link" },
+          { name: "小兒腸胃", url: "https://drive.google.com/drive/folders/1K5cX_ZBMO8t_L_1JBKV_I4XiLqslKGFq?usp=drive_link" },
+          { name: "小兒血液腫瘤", url: "https://drive.google.com/drive/folders/1i8CI1yuokCOsxtfgsYa1ENk2DWDZu9R_?usp=drive_link" },
+          { name: "小兒心臟", url: "https://drive.google.com/drive/folders/1mxsUd1vZlTOUfFnC6WlDmOHatu2_QNVU?usp=drive_link" },
+          { name: "新生兒", url: "https://drive.google.com/drive/folders/1uQ3ifZW8B_DN3uC5PMnI-cuOPjvLd3Md?usp=drive_link" }
         ]
       },
       {
@@ -158,7 +173,8 @@
         imgSrc: "Emergency.jpg", imageNote: "急診檢傷流程與頭部外傷觀察重點圖",
         subLinks: [
           { name: "急診內科", url: "https://drive.google.com/drive/folders/1KG1ZHdroJKAKNJuL9hu73e8yvmvvcwXo?usp=drive_link" },
-          { name: "急診外科", url: "https://drive.google.com/drive/folders/1YRjCZWySJSWQ39Bxp96d9tKslbjUyUok?usp=drive_link" }
+          { name: "急診外科", url: "https://drive.google.com/drive/folders/1YRjCZWySJSWQ39Bxp96d9tKslbjUyUok?usp=drive_link" },
+          { name: "急診其他", url: "https://drive.google.com/drive/folders/1w8wdx0DHbRjxxnZnvriZELDvfa1FGl6f?usp=drive_link" }
         ]
       },
       {
@@ -210,8 +226,8 @@
       },
       {
         id: "special-units", category: "special", groupTitle: "特殊專科與整合照護", badge: "重點專區", icon: "ph-shield-plus",
-        keywords: ["加護病房", "精神科", "高壓氧", "血液透析", "腹膜透析", "洗腎", "高齡友善", "居家照護", "跌倒"],
-        description: "洗腎血管通路保養、長輩高齡防跌友善與出院居家照護支援。",
+        keywords: ["加護病房", "精神科", "高壓氧", "共通", "共檢", "血液透析", "腹膜透析", "洗腎", "高齡友善", "居家照護", "跌倒", "長照", "造口"],
+        description: "加護病房會客、洗腎血管通路保養、高壓氧治療、長輩高齡防跌友善與出院居家照護支援。",
         mainTips: [
           "血液透析（洗腎）之動靜脈廔管手臂：不可量血壓、抽血、當枕頭壓睡，每日觸摸確認震顫感。",
           "腹膜透析換液時務必落實洗手與戴口罩，維持嚴格無菌操作。",
@@ -220,8 +236,15 @@
         caution: "居家若發現洗腎管路滲血、傷口發紅流膿、發燒畏寒，請立即回診就醫。",
         imgSrc: "Integrated_care.jpg", imageNote: "動靜脈廔管護理與居家防跌安全檢查圖",
         subLinks: [
+          { name: "加護病房", url: "https://drive.google.com/drive/folders/1c_Bo6Qcw4EK9m3PpzhywlszKRcSzsn9D?usp=drive_link" },
+          { name: "精神科", url: "https://drive.google.com/drive/folders/1lryQQntO_ZaSLqn-_2smevlr9EERdNDk?usp=drive_link" },
+          { name: "高壓氧治療", url: "https://drive.google.com/drive/folders/1hE69CrDzt5_vrdK_Gqd8xcIiqDddnDoi?usp=drive_link" },
+          { name: "共通項目", url: "https://drive.google.com/drive/folders/1ZciIjXPwelhp8JNfnP-QDssYLT2ZvV8k?usp=drive_link" },
+          { name: "共檢項目", url: "https://drive.google.com/drive/folders/1F_B1Vrrv7ECNXNp4jNxNvfYI5mhv_ath?usp=drive_link" },
           { name: "血液透析", url: "https://drive.google.com/drive/folders/1IZUuFtzWlTIalAyUJTZ6gHAbpeAy5HTY?usp=drive_link" },
-          { name: "高齡友善", url: "https://drive.google.com/drive/folders/1g2srWoa_SBMeuHHIgVrvlXA5vCk8kL5X?usp=drive_link" }
+          { name: "腹膜透析", url: "https://drive.google.com/drive/folders/1y0e6dSH6Il8lihZaDdejP2G8mmC1tPmO?usp=drive_link" },
+          { name: "高齡友善", url: "https://drive.google.com/drive/folders/1g2srWoa_SBMeuHHIgVrvlXA5vCk8kL5X?usp=drive_link" },
+          { name: "居家照護", url: "https://drive.google.com/drive/folders/1T2gYHSzp1zzWwjjiPj5xVZVUhGEQm3TB?usp=drive_link" }
         ]
       }
     ];
@@ -311,33 +334,64 @@
     }
 
     // ==========================================
-    // 渲染與搜尋邏輯
+    // 智慧推播搜尋引擎 (多關鍵字加權與高亮)
     // ==========================================
+    
+    // 工具函數：將字串中的特殊字元跳脫，避免 Regex 錯誤
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // 工具函數：關鍵字高亮標記
+    function highlightText(text, query) {
+      if (!query) return text;
+      // 用空白切分關鍵字，過濾掉空字串
+      const terms = query.trim().split(/\s+/).filter(t => t.length > 0);
+      if (terms.length === 0) return text;
+
+      // 建立動態正則表達式，忽略大小寫 (gi)
+      const safeTerms = terms.map(escapeRegExp).join('|');
+      const regex = new RegExp(`(${safeTerms})`, 'gi');
+      
+      // 將配對到的文字包上 <mark> 標籤
+      return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+    }
+
+    // 1. 支援「空白分詞」的計分演算法
     function calculateCardScore(card, query) {
       if (!query) return 1;
       let score = 0;
-      const lowerQ = query.toLowerCase();
-      if (card.groupTitle.toLowerCase().includes(lowerQ)) score += 50;
-      card.keywords.forEach(kw => {
-        if (kw.toLowerCase() === lowerQ) score += 40;
-        else if (kw.toLowerCase().includes(lowerQ)) score += 20;
+      // 將使用者的輸入用空白切開，支援例如 "開刀 肚子" 的多條件查詢
+      const searchTerms = query.toLowerCase().trim().split(/\s+/).filter(t => t.length > 0);
+
+      searchTerms.forEach(term => {
+        if (card.groupTitle.toLowerCase().includes(term)) score += 50;
+        
+        card.keywords.forEach(kw => {
+          if (kw.toLowerCase() === term) score += 40;
+          else if (kw.toLowerCase().includes(term)) score += 20;
+        });
+        
+        card.subLinks.forEach(sub => {
+          if (sub.name.toLowerCase().includes(term)) score += 25;
+        });
+        
+        card.mainTips.forEach(tip => {
+          if (tip.toLowerCase().includes(term)) score += 10;
+        });
+        
+        if (card.description.toLowerCase().includes(term)) score += 5;
       });
-      card.subLinks.forEach(sub => {
-        if (sub.name.toLowerCase().includes(lowerQ)) score += 25;
-      });
-      card.mainTips.forEach(tip => {
-        if (tip.toLowerCase().includes(lowerQ)) score += 10;
-      });
-      if (card.description.toLowerCase().includes(lowerQ)) score += 5;
+
       return score;
     }
 
+    // 2. 渲染卡片 (套用高亮功能)
     function renderCards(cardsToRender) {
       const container = document.getElementById('cardContainer');
+      const query = document.getElementById('searchInput').value; // 取得當下搜尋字串用於高亮
       
-      // 修復 Bug 2：重新渲染前務必終止任何正在進行的語音
       stopSpeech(); 
-      
       container.innerHTML = '';
 
       if (cardsToRender.length === 0) {
@@ -345,22 +399,25 @@
           <div class="no-result">
             <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             <p style="font-size: 1.3em; font-weight: 800;">抱歉，找不到符合的照護資料</p>
-            <p>請嘗試其他關鍵字，例如「發燒」、「傷口」或點選上方分類標籤。</p>
+            <p>請嘗試用空格分開關鍵字，例如「發燒 飲食」、「傷口 換藥」或點選上方分類標籤。</p>
           </div>`;
         return;
       }
 
       cardsToRender.forEach(card => {
+        // 套用高亮處理
+        const highlightedTitle = highlightText(card.groupTitle, query);
+        const highlightedDesc = highlightText(card.description, query);
+        
         const subLinksHtml = card.subLinks.map(sub => `
           <a href="${sub.url}" target="_blank" rel="noopener noreferrer" class="sublink-item" aria-label="開啟 ${sub.name} 雲端資料夾">
-            <span>${sub.name}</span>
+            <span>${highlightText(sub.name, query)}</span>
             <i class="ph-bold ph-arrow-square-out" aria-hidden="true"></i>
           </a>
         `).join('');
 
-        const tipsHtml = card.mainTips.map(tip => `<li>${tip}</li>`).join('');
+        const tipsHtml = card.mainTips.map(tip => `<li>${highlightText(tip, query)}</li>`).join('');
 
-       // 改回直接讀取實體的 JPG 圖片檔案
         const imageContent = `
             <img src="${card.imgSrc}" alt="${card.imageNote}" loading="lazy" width="1200" height="655" 
                  style="display:block; width:100%; height:auto; max-height:480px; object-fit:contain; border-radius:12px;">
@@ -370,7 +427,7 @@
         cardElement.className = 'guide-card';
         cardElement.innerHTML = `
           <div class="card-title-bar">
-            <h2><i class="ph-bold ${card.icon}" aria-hidden="true"></i> ${card.groupTitle}</h2>
+            <h2><i class="ph-bold ${card.icon}" aria-hidden="true"></i> ${highlightedTitle}</h2>
             <div class="title-actions">
               <span class="tag-label">${card.badge}</span>
               <button class="speech-btn" type="button" aria-pressed="false" aria-label="朗讀本則衛教內容">
@@ -380,7 +437,7 @@
           </div>
           <div class="card-inner">
             <p style="font-size: 1.1em; font-weight: 700; margin-bottom: 0.85rem; color: var(--text-sub);">
-              ${card.description}
+              ${highlightedDesc}
             </p>
             <div class="image-box">
               ${imageContent}
@@ -390,7 +447,7 @@
               <ul class="guide-list">${tipsHtml}</ul>
               <div class="warning-box">
                 <h4><i class="ph-bold ph-warning-circle" aria-hidden="true"></i> 貼心提醒與警戒症狀</h4>
-                <p>${card.caution}</p>
+                <p>${highlightText(card.caution, query)}</p>
               </div>
             </div>
             <div class="sublink-grid">
