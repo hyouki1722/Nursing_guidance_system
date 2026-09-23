@@ -360,14 +360,11 @@
 
         const tipsHtml = card.mainTips.map(tip => `<li>${tip}</li>`).join('');
 
-        // 優化：WebP <picture> + lazy loading + 尺寸防跳動(CLS)
-        const webpSrc = card.imgSrc.replace('.jpg', '.webp');
+       // 改回直接讀取實體的 JPG 圖片檔案
         const imageContent = `
-          <picture>
-            <source srcset="${webpSrc}" type="image/webp">
             <img src="${card.imgSrc}" alt="${card.imageNote}" loading="lazy" width="1200" height="655" 
                  style="display:block; width:100%; height:auto; max-height:480px; object-fit:contain; border-radius:12px;">
-          </picture>`;
+        `;
 
         const cardElement = document.createElement('article');
         cardElement.className = 'guide-card';
